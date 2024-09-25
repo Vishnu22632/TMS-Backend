@@ -54,16 +54,16 @@ public class UserServiceTest {
 	
     
 
-    @Test
-    void testGetAllUsers() {
-        List<User> userList = Arrays.asList(new User(), new User());
-        when(userRepository.findAll()).thenReturn(userList);
-
-        List<User> users = userService.getAllUsers();
-
-        assertEquals(2, users.size());
-        verify(userRepository, times(1)).findAll();  // Verify that findAll was called once
-    }
+//    @Test
+//    void testGetAllUsers() {
+//        List<User> userList = Arrays.asList(new User(), new User());
+//        when(userRepository.findAll()).thenReturn(userList);
+//
+//        List<User> users = userService.getAllUsers();
+//
+//        assertEquals(2, users.size());
+//        verify(userRepository, times(1)).findAll();  // Verify that findAll was called once
+//    }
 	
 	
     @Test

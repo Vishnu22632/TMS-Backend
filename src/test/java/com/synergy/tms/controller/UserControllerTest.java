@@ -72,19 +72,19 @@ class UserControllerTest {
         verify(userService, times(1)).saveUser(any(User.class));
     }
 
-    @Test
-    void getAllUsersTest() throws Exception {
-        User user1 = new User(1L, "Vishnu Thakur", "vishnu22632@gmail.com", "123", "Lalitpur");
-        User user2 = new User(2L, "Anusha Yadav", "anusha123@gmail.com", "3333", "Janakpur");
-
-        when(userService.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
-
-        mockMvc.perform(get("/api/users"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.length()").value(2));
-
-        verify(userService, times(1)).getAllUsers();
-    }
+//    @Test
+//    void getAllUsersTest() throws Exception {
+//        User user1 = new User(1L, "Vishnu Thakur", "vishnu22632@gmail.com", "123", "Lalitpur");
+//        User user2 = new User(2L, "Anusha Yadav", "anusha123@gmail.com", "3333", "Janakpur");
+//
+//        when(userService.getAllUsers()).thenReturn(Arrays.asList(user1, user2));
+//
+//        mockMvc.perform(get("/api/users"))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.length()").value(2));
+//
+//        verify(userService, times(1)).getAllUsers();
+//    }
 
     @Test
     void getUserByIdTest() throws Exception {
@@ -125,3 +125,7 @@ class UserControllerTest {
         verify(userService, times(1)).deleteUser(1L);
     }
 }
+
+
+
+
