@@ -1,6 +1,5 @@
 package com.synergy.tms.controller;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,27 +28,33 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 	
-	// create user api
-	
-	@PostMapping
-	public ResponseEntity<User> createUser(@RequestBody User user){
-		User savedUser=userService.saveUser(user);
-		return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
-	}
-
-	// get all user api
-//	@GetMapping
-//	public List<User> getAllUsers(){
-//		return userService.getAllUsers();
-//	}
 	
 	
-	// Get paginated users API
-    @GetMapping
-    public Page<User> getUsers(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "5") int size) {
-        return userService.getUsers(page, size);
+	
+	@GetMapping
+    public Page<User> getUsers(
+        @RequestParam(defaultValue = "0") int page,
+        @RequestParam(defaultValue = "5") int size,
+        @RequestParam(required = false) String filter) {
+        return userService.getUsers(filter, page, size);
     }
 	
+	
+	
+	
+	// create user api
+	
+		@PostMapping
+		public ResponseEntity<User> createUser(@RequestBody User user){
+			User savedUser=userService.saveUser(user);
+			return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+		}
+
+		// get all user api
+//		@GetMapping
+//		public List<User> getAllUsers(){
+//			return userService.getAllUsers();
+//		}
 	
 //	get user by id api
 	@GetMapping("/{id}")

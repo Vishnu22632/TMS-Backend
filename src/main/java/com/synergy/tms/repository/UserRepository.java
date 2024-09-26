@@ -9,7 +9,7 @@ import com.synergy.tms.entity.User;
 public interface UserRepository extends JpaRepository<User, Long> {
 
 	
-	// Use pageable to support pagination
-    Page<User> findAll(Pageable pageable);
+	// Use Pageable to support pagination and filtering
+    Page<User> findByFullNameContainingIgnoreCase(String fullName, Pageable pageable);
 }
 

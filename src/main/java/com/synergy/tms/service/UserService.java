@@ -1,6 +1,5 @@
 package com.synergy.tms.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,11 +26,13 @@ public class UserService {
 //		return userRepository.findAll();
 //	}
 	
-	// Get paginated users
-    public Page<User> getUsers(int page, int size) {
+	 // Get paginated users with  filtering by full name
+    public Page<User> getUsers(String filter, int page, int size) {
+        if (filter != null && !filter.isEmpty()) {
+            return userRepository.findByFullNameContainingIgnoreCase(filter, PageRequest.of(page, size));
+        }
         return userRepository.findAll(PageRequest.of(page, size));
     }
-	
 	
 	
 	
