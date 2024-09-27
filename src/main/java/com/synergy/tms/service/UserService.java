@@ -21,15 +21,12 @@ public class UserService {
 		return userRepository.save(user);
 	}
 	
-	// Get all users
-//	public List<User> getAllUsers(){
-//		return userRepository.findAll();
-//	}
 	
-	 // Get paginated users with  filtering by full name
+	 // Get paginated users with filtering by full name, email, or address
     public Page<User> getUsers(String filter, int page, int size) {
         if (filter != null && !filter.isEmpty()) {
-            return userRepository.findByFullNameContainingIgnoreCase(filter, PageRequest.of(page, size));
+            return userRepository.findByFullNameContainingIgnoreCaseOrEmailContainingIgnoreCaseOrAddressContainingIgnoreCase(
+                filter, filter, filter, PageRequest.of(page, size));
         }
         return userRepository.findAll(PageRequest.of(page, size));
     }
